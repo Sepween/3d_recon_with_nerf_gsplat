@@ -1,0 +1,3 @@
+[submodule "gaussian_splatting/gsplat"]
+	path = gaussian_splatting/gsplat
+	url = https://github.com/nerfstudio-project/gsplat
