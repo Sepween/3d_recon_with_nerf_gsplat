@@ -1,0 +1,13 @@
+ssh -L 8090:localhost:8090 yifeip@greatlakes.arc-ts.umich.edu
+salloc --cpus-per-task=4 --gpus=1 --mem-per-gpu=44GB --partition=spgpu --time=0-02:00:00 --account=eecs498s014f24_class
+hostname -f
+ssh -L 8090:localhost:8090 {node_address}
+cd Desktop/hw4/gsplat
+module load python3.9-anaconda
+module load cuda/12.1.
+module load gcc/10.3.0
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+python -m pip install -e .
+python -m pip install -r examples/requirements.txt
+python examples/datasets/download_dataset.py
+python3 examples/simple_trainer.py default --data_dir data/360_v2/garden/ --data_factor 4 --result_dir ./results/garden --port 8090 --max_steps 20000
